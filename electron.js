@@ -19,8 +19,8 @@ function createWindow() {
     },
   });
 
-  mainWindow.loadURL("http://localhost:5173"); // Dev
-  // mainWindow.loadFile(path.join(__dirname, "dist/index.html")); // Prod
+  // mainWindow.loadURL("http://localhost:5173"); // Dev
+  mainWindow.loadFile(path.join(__dirname, "dist/index.html")); // Prod
 
   mainWindow.on("closed", () => (mainWindow = null));
 }

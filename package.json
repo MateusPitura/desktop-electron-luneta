@@ -9,15 +9,16 @@
     "productName": "Luneta",
     "directories": {
       "output": "build"
+    },
+    "snap": {
+      "confinement": "classic"
     }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "vite & electron .",
+    "build": "tsc -b && vite build && electron-builder",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "electron": "electron .",
-    "dist": "electron-builder"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
