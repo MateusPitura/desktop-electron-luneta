@@ -1,8 +1,9 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
-import * as url from "url";
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+import { fileURLToPath } from "url";
+import { exec } from "child_process";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 let mainWindow;
 
@@ -11,6 +12,9 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
+      preload: path.join(__dirname, "preload.cjs"),
+      contextIsolation: true,
+      enableRemoteModule: false,
       nodeIntegration: true,
     },
   });
@@ -31,4 +35,14 @@ app.on("activate", () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipcMain.on("execute-command", (event, message) => {
+  exec(message, (error, stdout, stderr) => {
+    if (error) {
+      event.reply("command-result", error.message);
+      return;
+    }
+    event.reply("command-result", stdout || stderr);
+  });
 });
