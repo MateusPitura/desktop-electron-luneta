@@ -1,13 +1,23 @@
 {
   "name": "desktop-electron-luneta",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "main": "electron.js",
+  "build": {
+    "appId": "desktop.electron.luneta",
+    "productName": "Luneta",
+    "directories": {
+      "output": "build"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron": "electron .",
+    "dist": "electron-builder"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -18,6 +28,8 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
