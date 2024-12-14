@@ -3,6 +3,7 @@ import FilterSelect from "./FilterSelect";
 import FilterActive from "./FilterActive";
 import { Option } from "../utils/types";
 import FilterContainer from "./FilterContainer";
+import { languages } from "../utils/constants";
 
 export default function FilterBarTranslate(): ReactElement {
   const [currentFilterFrom, setCurrentFilterFrom] = useState<Option[]>([]);
@@ -38,7 +39,11 @@ export default function FilterBarTranslate(): ReactElement {
   return (
     <FilterContainer>
       <>
-        <FilterSelect label="From" onClick={handleAddCurrentFilterFrom} />
+        <FilterSelect
+          label="From"
+          onClick={handleAddCurrentFilterFrom}
+          options={languages}
+        />
         {currentFilterFrom.map((filter) => (
           <FilterActive
             key={filter.value}
@@ -46,7 +51,11 @@ export default function FilterBarTranslate(): ReactElement {
             onClick={handleRemoveCurrentFilterFrom}
           />
         ))}
-        <FilterSelect label="To" onClick={handleAddCurrentFilterTo} />
+        <FilterSelect
+          label="To"
+          onClick={handleAddCurrentFilterTo}
+          options={languages}
+        />
         {currentFilterTo.map((filter) => (
           <FilterActive
             key={filter.value}

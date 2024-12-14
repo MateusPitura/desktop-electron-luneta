@@ -6,7 +6,7 @@ export default function FilterBarDictionary(): ReactElement {
   return (
     <FilterContainer>
       <>
-        <FilterSelect label="Language" onClick={() => {}} />
+        <FilterSelect label="Language" onClick={() => {}} options={[]} />
       </>
     </FilterContainer>
   );
