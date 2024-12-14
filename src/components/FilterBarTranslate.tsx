@@ -53,32 +53,30 @@ export default function FilterBarTranslate(): ReactElement {
 
   return (
     <FilterContainer>
-      <>
-        <FilterSelect
-          label="From"
-          onClick={handleAddCurrentFilterFrom}
-          options={languages}
+      <FilterSelect
+        label="From"
+        onClick={handleAddCurrentFilterFrom}
+        options={languages}
+      />
+      {currentFilterFrom.map((filter) => (
+        <FilterActive
+          key={filter.value}
+          option={filter}
+          onClick={handleRemoveCurrentFilterFrom}
         />
-        {currentFilterFrom.map((filter) => (
-          <FilterActive
-            key={filter.value}
-            option={filter}
-            onClick={handleRemoveCurrentFilterFrom}
-          />
-        ))}
-        <FilterSelect
-          label="To"
-          onClick={handleAddCurrentFilterTo}
-          options={languages}
+      ))}
+      <FilterSelect
+        label="To"
+        onClick={handleAddCurrentFilterTo}
+        options={languages}
+      />
+      {currentFilterTo.map((filter) => (
+        <FilterActive
+          key={filter.value}
+          option={filter}
+          onClick={handleRemoveCurrentFilterTo}
         />
-        {currentFilterTo.map((filter) => (
-          <FilterActive
-            key={filter.value}
-            option={filter}
-            onClick={handleRemoveCurrentFilterTo}
-          />
-        ))}
-      </>
+      ))}
     </FilterContainer>
   );
 }

@@ -1,7 +1,7 @@
-import { useEffect, type ReactElement } from "react";
+import { ReactNode, useEffect, type ReactElement } from "react";
 
 interface FilterContainerProperties {
-  children: ReactElement;
+  children: ReactNode;
 }
 
 export default function FilterContainer({

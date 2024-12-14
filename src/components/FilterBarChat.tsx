@@ -5,9 +5,7 @@ import FilterContainer from "./FilterContainer";
 export default function FilterBarChat(): ReactElement {
   return (
     <FilterContainer>
-      <>
-        <FilterSelect label="Model" onClick={() => {}} options={[]} />
-      </>
+      <FilterSelect label="Model" onClick={() => {}} options={[]} />
     </FilterContainer>
   );
 }

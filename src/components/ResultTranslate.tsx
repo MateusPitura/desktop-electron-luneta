@@ -21,22 +21,20 @@ export default function ResultTranslate({
   return (
     <>
       <ResultOptionsContainer>
-        <>
-          {result?.info.to.map((to, index) => (
-            <Fragment key={to.value}>
-              <ResultOption
-                label={result.info.from[0]?.label ?? "Auto"}
-                supportText={to.label}
-                onClick={() => handleActiveIndex(index)}
-                active={activeIndex === index}
-              />
-              <DividerHoriz />
-            </Fragment>
-          ))}
-        </>
+        {result?.info.to.map((to, index) => (
+          <Fragment key={to.value}>
+            <ResultOption
+              label={result.info.from[0]?.label ?? "Auto"}
+              supportText={to.label}
+              onClick={() => handleActiveIndex(index)}
+              active={activeIndex === index}
+            />
+            <DividerHoriz />
+          </Fragment>
+        ))}
       </ResultOptionsContainer>
       <ResultOutputContainer>
-        <>{result?.output?.split("\n")[activeIndex]}</>
+        {result?.output?.split("\n")[activeIndex]}
       </ResultOutputContainer>
     </>
   );

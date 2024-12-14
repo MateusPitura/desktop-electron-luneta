@@ -1,7 +1,7 @@
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode } from "react";
 
 interface ResultOutputProperties {
-  children?: ReactElement;
+  children: ReactNode;
 }
 
 export default function ResultOutputContainer({
