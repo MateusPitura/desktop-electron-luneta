@@ -6,6 +6,7 @@ interface SectionItemProperties {
   counter?: number;
   children?: ReactElement;
   active?: boolean;
+  onClick: () => void;
 }
 
 export default function SectionItem({
@@ -13,12 +14,14 @@ export default function SectionItem({
   counter,
   children,
   active,
+  onClick,
 }: SectionItemProperties): ReactElement {
   return (
     <div
-      className={classNames({
+      className={classNames("cursor-pointer hover:opacity-50", {
         "bg-dark-tertiary bg-opacity-25": active,
       })}
+      onClick={onClick}
     >
       <div className="flex gap-2 p-3 items-center">
         {children}

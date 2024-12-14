@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import DividerHoriz from "./components/DividerHoriz";
 import SearchBar from "./components/SearchBar";
 import SectionBar from "./components/SectionBar";
-import FilterBar from "./components/FilterBar";
 import Result from "./components/Result";
+import FilterBarWrapper from "./components/FilterBarWrapper";
 
 export default function App() {
   const [command, setCommand] = useState("");
@@ -34,7 +34,7 @@ export default function App() {
       <DividerHoriz />
       <SectionBar />
       <DividerHoriz />
-      <FilterBar />
+      <FilterBarWrapper />
       <DividerHoriz />
       <Result output={output} />
     </div>
