@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import { Sections } from "./utils/types";
+import { Execute, Sections } from "./utils/types";
 import { GlobalContext } from "./GlobalContext";
 
 interface GlobalProviderProperties {
@@ -11,15 +11,15 @@ export function GlobalProvider({ children }: GlobalProviderProperties) {
     Sections.Translate
   );
 
-  const [currentFilter, setCurrentFilter] = useState<string>("");
+  const [execute, setExecute] = useState<Execute>();
 
   return (
     <GlobalContext.Provider
       value={{
         currentSectionActive,
         setCurrentSectionActive,
-        currentFilter,
-        setCurrentFilter,
+        execute,
+        setExecute,
       }}
     >
       {children}

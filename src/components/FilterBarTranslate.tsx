@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState, type ReactElement } from "react";
 import FilterSelect from "./FilterSelect";
 import FilterActive from "./FilterActive";
-import { Option } from "../utils/types";
+import { Option, Sections } from "../utils/types";
 import FilterContainer from "./FilterContainer";
 import { languages } from "../utils/constants";
 import { GlobalContext } from "../GlobalContext";
 import { formatTranslateCommand } from "../utils/formatTranslateCommand";
 
 export default function FilterBarTranslate(): ReactElement {
-  const { setCurrentFilter } = useContext(GlobalContext);
+  const { setExecute } = useContext(GlobalContext);
 
   const [currentFilterFrom, setCurrentFilterFrom] = useState<Option[]>([]);
 
@@ -40,8 +40,16 @@ export default function FilterBarTranslate(): ReactElement {
       from: currentFilterFrom,
       to: currentFilterTo,
     });
-    setCurrentFilter(filterFormatted);
-  }, [currentFilterFrom, currentFilterTo, setCurrentFilter]);
+    const executeTranslate = {
+      command: `trans -b ${filterFormatted}`,
+      section: Sections.Translate,
+      info: {
+        from: currentFilterFrom,
+        to: currentFilterTo,
+      },
+    };
+    setExecute(executeTranslate);
+  }, [currentFilterFrom, currentFilterTo, setExecute]);
 
   return (
     <FilterContainer>

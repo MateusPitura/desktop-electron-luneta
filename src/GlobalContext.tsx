@@ -1,16 +1,16 @@
 import { createContext } from "react";
-import { Sections } from "./utils/types";
+import { Execute, Sections } from "./utils/types";
 
 interface GlobalContextProperties {
-  currentSectionActive: Sections | undefined;
+  currentSectionActive?: Sections;
   setCurrentSectionActive: (section: Sections) => void;
-  currentFilter: string;
-  setCurrentFilter: (command: string) => void;
+  execute?: Execute;
+  setExecute: (execute: Execute) => void;
 }
 
 export const GlobalContext = createContext<GlobalContextProperties>({
   currentSectionActive: undefined,
   setCurrentSectionActive: () => {},
-  currentFilter: "",
-  setCurrentFilter: () => {},
+  execute: undefined,
+  setExecute: () => {},
 });

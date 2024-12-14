@@ -4,7 +4,7 @@ import { GlobalContext } from "../GlobalContext";
 import { Sections } from "../utils/types";
 
 export default function SearchBar(): ReactElement {
-  const { currentSectionActive, currentFilter } = useContext(GlobalContext);
+  const { execute } = useContext(GlobalContext);
 
   const [input, setInput] = useState("");
 
@@ -13,9 +13,12 @@ export default function SearchBar(): ReactElement {
   };
 
   const handleExecute = () => {
-    if (currentSectionActive === Sections.Translate) {
-      const commandFormatted = `trans --brief ${currentFilter} "${input}"`;
-      window.electron.send("execute", commandFormatted);
+    const executeFormatted = { ...execute };
+    switch (executeFormatted.section) {
+      case Sections.Translate:
+        executeFormatted.command = `${executeFormatted.command} "${input}"`;
+        window.electron.send("execute", JSON.stringify(executeFormatted));
+        break;
     }
   };
 
