@@ -1,20 +1,21 @@
-import { useState, type ReactElement } from "react";
+import { useContext, useEffect, useState, type ReactElement } from "react";
 import FilterSelect from "./FilterSelect";
 import FilterActive from "./FilterActive";
 import { Option } from "../utils/types";
 import FilterContainer from "./FilterContainer";
 import { languages } from "../utils/constants";
+import { GlobalContext } from "../GlobalContext";
+import { formatTranslateCommand } from "../utils/formatTranslateCommand";
 
 export default function FilterBarTranslate(): ReactElement {
+  const { setCurrentFilter } = useContext(GlobalContext);
+
   const [currentFilterFrom, setCurrentFilterFrom] = useState<Option[]>([]);
 
   const [currentFilterTo, setCurrentFilterTo] = useState<Option[]>([]);
 
   const handleAddCurrentFilterFrom = (option: Option) => {
-    if (currentFilterFrom.find((filter) => filter.value === option.value)) {
-      return;
-    }
-    setCurrentFilterFrom((prev) => [...prev, option]);
+    setCurrentFilterFrom([option]);
   };
 
   const handleAddCurrentFilterTo = (option: Option) => {
@@ -24,17 +25,23 @@ export default function FilterBarTranslate(): ReactElement {
     setCurrentFilterTo((prev) => [...prev, option]);
   };
 
-  const handleRemoveCurrentFilterFrom = (option: Option) => {
-    setCurrentFilterFrom((prev) =>
-      prev.filter((filter) => filter.value !== option.value)
+  const handleRemoveCurrentFilterFrom = () => {
+    setCurrentFilterFrom([]);
+  };
+
+  const handleRemoveCurrentFilterTo = (option?: Option) => {
+    setCurrentFilterTo((prev) =>
+      prev.filter((filter) => filter.value !== option?.value)
     );
   };
 
-  const handleRemoveCurrentFilterTo = (option: Option) => {
-    setCurrentFilterTo((prev) =>
-      prev.filter((filter) => filter.value !== option.value)
-    );
-  };
+  useEffect(() => {
+    const filterFormatted = formatTranslateCommand({
+      from: currentFilterFrom,
+      to: currentFilterTo,
+    });
+    setCurrentFilter(filterFormatted);
+  }, [currentFilterFrom, currentFilterTo, setCurrentFilter]);
 
   return (
     <FilterContainer>

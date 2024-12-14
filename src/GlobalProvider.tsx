@@ -11,11 +11,15 @@ export function GlobalProvider({ children }: GlobalProviderProperties) {
     Sections.Translate
   );
 
+  const [currentFilter, setCurrentFilter] = useState<string>("");
+
   return (
     <GlobalContext.Provider
       value={{
         currentSectionActive,
         setCurrentSectionActive,
+        currentFilter,
+        setCurrentFilter,
       }}
     >
       {children}

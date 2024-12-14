@@ -4,7 +4,7 @@ import { Option } from "../utils/types";
 
 interface FilterActiveProperties {
   option: Option;
-  onClick: (option: Option) => void;
+  onClick: (option?: Option) => void;
 }
 
 export default function FilterActive({

@@ -6,7 +6,6 @@ import Result from "./components/Result";
 import FilterBarWrapper from "./components/FilterBarWrapper";
 
 export default function App() {
-  const [command, setCommand] = useState("");
   const [output, setOutput] = useState("");
 
   useEffect(() => {
@@ -15,22 +14,9 @@ export default function App() {
     });
   }, []);
 
-  const handleSetCommand = (value: string) => {
-    setCommand(value);
-  };
-
-  const handleExecute = () => {
-    const commandFormatted = `trans --brief pt:en "${command}"`;
-    window.electron.send("execute-command", commandFormatted);
-  };
-
   return (
     <div className="bg-dark-surface h-screen flex flex-col">
-      <SearchBar
-        command={command}
-        handleExecute={handleExecute}
-        handleSetCommand={handleSetCommand}
-      />
+      <SearchBar />
       <DividerHoriz />
       <SectionBar />
       <DividerHoriz />
