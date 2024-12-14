@@ -15,7 +15,7 @@ export default function SearchBar(): ReactElement {
   const handleExecute = () => {
     if (currentSectionActive === Sections.Translate) {
       const commandFormatted = `trans --brief ${currentFilter} "${input}"`;
-      window.electron.send("execute-command", commandFormatted);
+      window.electron.send("execute", commandFormatted);
     }
   };
 

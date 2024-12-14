@@ -1,12 +1,16 @@
-import type { ReactElement } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import ResultOption from "./ResultOption";
 import DividerHoriz from "./DividerHoriz";
 
-interface ResultProperties {
-  output?: string;
-}
+export default function Result(): ReactElement {
+  const [output, setOutput] = useState("");
 
-export default function Result({ output }: ResultProperties): ReactElement {
+  useEffect(() => {
+    window.electron.receive("result", (data) => {
+      setOutput(data);
+    });
+  }, []);
+
   return (
     <div className="flex flex-1">
       {/* Result side bar */}

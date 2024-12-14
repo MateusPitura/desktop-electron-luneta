@@ -37,12 +37,12 @@ app.on("activate", () => {
   }
 });
 
-ipcMain.on("execute-command", (event, message) => {
+ipcMain.on("execute", (event, message) => {
   exec(message, (error, stdout, stderr) => {
     if (error) {
-      event.reply("command-result", error.message);
+      event.reply("result", error.message);
       return;
     }
-    event.reply("command-result", stdout || stderr);
+    event.reply("result", stdout || stderr);
   });
 });
