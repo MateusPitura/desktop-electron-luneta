@@ -2,12 +2,12 @@ import { Option } from "./types";
 
 export const languages: Option[] = [
   {
-    value: "pt",
-    label: "Portuguese",
-  },
-  {
     value: "en",
     label: "English",
+  },
+  {
+    value: "pt",
+    label: "Portuguese",
   },
   {
     value: "es",
@@ -18,3 +18,5 @@ export const languages: Option[] = [
     value: "fr",
   },
 ];
+
+export const defaultLanguage = languages[0];

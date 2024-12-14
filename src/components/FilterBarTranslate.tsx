@@ -3,7 +3,7 @@ import FilterSelect from "./FilterSelect";
 import FilterActive from "./FilterActive";
 import { Option, Sections } from "../utils/types";
 import FilterContainer from "./FilterContainer";
-import { languages } from "../utils/constants";
+import { defaultLanguage, languages } from "../utils/constants";
 import { GlobalContext } from "../GlobalContext";
 import { formatTranslateCommand } from "../utils/formatTranslateCommand";
 
@@ -45,7 +45,7 @@ export default function FilterBarTranslate(): ReactElement {
       section: Sections.Translate,
       info: {
         from: currentFilterFrom,
-        to: currentFilterTo,
+        to: currentFilterTo.length > 0 ? currentFilterTo : [defaultLanguage],
       },
     };
     setExecute(executeTranslate);
