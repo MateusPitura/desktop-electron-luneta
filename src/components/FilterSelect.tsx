@@ -11,7 +11,9 @@ export default function FilterSelect({
   return (
     <div className="bg-dark-primary rounded-md px-2 flex gap-2 items-center">
       <span className="text-dark-onPrimary text-sm">{label}</span>
-      <ArrowDropDown color="primary" fontSize="small" />
+      <div className="text-dark-onPrimary flex items-center">
+        <ArrowDropDown color="inherit" fontSize="small" />
+      </div>
     </div>
   );
 }

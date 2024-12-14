@@ -1,4 +1,4 @@
-import { HighlightOff } from "@mui/icons-material";
+import { Clear } from "@mui/icons-material";
 import type { ReactElement } from "react";
 
 interface FilterActiveProperties {
@@ -11,7 +11,9 @@ export default function FilterActive({
   return (
     <div className="bg-dark-secondary rounded-md px-2 flex gap-2 items-center">
       <span className="text-dark-onSecondary text-sm">{label}</span>
-      <HighlightOff color="primary" fontSize="small" />
+      <div className="text-dark-onSecondary flex items-center">
+        <Clear color="inherit" fontSize="small" />
+      </div>
     </div>
   );
 }
