@@ -8,20 +8,25 @@ export default function FilterContainer({
   children,
 }: FilterContainerProperties): ReactElement {
   useEffect(() => {
-    const scrollContainer = document.getElementById("scroll-container");
-
-    scrollContainer?.addEventListener("wheel", (event) => {
+    const scrollContainer = document.getElementById("filter-scroll-container");
+    const handleScroll = (event: WheelEvent) => {
       event.preventDefault();
-      scrollContainer.scrollLeft += event.deltaY / 10;
-    });
+      if (scrollContainer) {
+        scrollContainer.scrollLeft += event.deltaY / 10;
+      }
+    };
+    scrollContainer?.addEventListener("wheel", handleScroll);
 
     return () => {
-      scrollContainer?.removeEventListener("wheel", () => {});
+      scrollContainer?.removeEventListener("wheel", handleScroll);
     };
   }, []);
 
   return (
-    <div className="p-2 gap-2 flex overflow-x-auto" id="scroll-container">
+    <div
+      className="p-2 gap-2 flex overflow-x-auto"
+      id="filter-scroll-container"
+    >
       {children}
     </div>
   );

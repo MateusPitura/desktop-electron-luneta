@@ -8,6 +8,8 @@ export default function ResultOutputContainer({
   children,
 }: ResultOutputProperties): ReactElement {
   return (
-    <div className="p-4 flex-1 text-dark-onSurface text-lg">{children}</div>
+    <div className="p-4 flex-1 text-dark-onSurface text-lg overflow-auto">
+      {children}
+    </div>
   );
 }

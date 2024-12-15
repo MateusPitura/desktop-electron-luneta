@@ -12,7 +12,7 @@ export default function Result(): ReactElement {
   }, []);
 
   return (
-    <div className="flex flex-1">
+    <div className="flex flex-1 overflow-auto">
       <ResultWrapper result={result} />
     </div>
   );

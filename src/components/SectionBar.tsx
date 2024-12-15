@@ -32,8 +32,24 @@ export default function SectionBar(): ReactElement {
     };
   }, [currentSectionActive]);
 
+  useEffect(() => {
+    const scrollContainer = document.getElementById("section-scroll-container");
+
+    const handleScroll = (event: WheelEvent) => {
+      event.preventDefault();
+      if (scrollContainer) {
+        scrollContainer.scrollLeft += event.deltaY / 10;
+      }
+    };
+    scrollContainer?.addEventListener("wheel", handleScroll);
+
+    return () => {
+      scrollContainer?.removeEventListener("wheel", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="w-full flex">
+    <div className="w-full flex overflow-auto" id="section-scroll-container">
       <SectionItem
         label="Translate"
         counter={3}
