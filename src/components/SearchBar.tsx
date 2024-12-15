@@ -34,7 +34,7 @@ export default function SearchBar(): ReactElement {
           value={input}
           onChange={(e) => handleSetCommand(e.target.value)}
         />
-        <button onClick={handleExecute} className="text-dark-onSurface">
+        <button onClick={handleExecute} className="text-dark-onSurface outline-none">
           Search
         </button>
       </label>

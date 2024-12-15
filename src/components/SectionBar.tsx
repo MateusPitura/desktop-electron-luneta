@@ -1,4 +1,4 @@
-import { useContext, type ReactElement } from "react";
+import { useContext, useEffect, type ReactElement } from "react";
 import SectionItem from "./SectionItem";
 import { AutoAwesome, MenuBook, Translate } from "@mui/icons-material";
 import DividerVert from "./DividerVert";
@@ -8,6 +8,28 @@ import { GlobalContext } from "../GlobalContext";
 export default function SectionBar(): ReactElement {
   const { currentSectionActive, setCurrentSectionActive } =
     useContext(GlobalContext);
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (currentSectionActive) {
+      const sections = Object.keys(Sections);
+      const currentIndex = sections.indexOf(currentSectionActive);
+      let newIndex = 0;
+      if (event.key === "ArrowLeft") {
+        newIndex = Math.max(currentIndex - 1, 0);
+      } else if (event.key === "ArrowRight") {
+        newIndex = Math.min(currentIndex + 1, sections.length - 1);
+      }
+      const newSection = sections[newIndex];
+      setCurrentSectionActive(newSection as Sections);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentSectionActive]);
 
   return (
     <div className="w-full flex">

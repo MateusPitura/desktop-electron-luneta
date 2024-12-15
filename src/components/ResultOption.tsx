@@ -15,8 +15,8 @@ export default function ResultOption({
   onClick,
 }: ResultOptionProperties): ReactElement {
   return (
-    <div
-      className={classNames("cursor-pointer hover:opacity-50", {
+    <button
+      className={classNames("cursor-pointer hover:opacity-50 w-full text-start", {
         "bg-dark-tertiary bg-opacity-25": active,
       })}
       onClick={onClick}
@@ -25,6 +25,6 @@ export default function ResultOption({
         <span className="text-dark-onSurface">{label}</span>{" "}
         <span className="text-dark-outline">{supportText}</span>
       </div>
-    </div>
+    </button>
   );
 }

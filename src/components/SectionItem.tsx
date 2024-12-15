@@ -17,7 +17,7 @@ export default function SectionItem({
   onClick,
 }: SectionItemProperties): ReactElement {
   return (
-    <div
+    <button
       className={classNames("cursor-pointer hover:opacity-50", {
         "bg-dark-tertiary bg-opacity-25": active,
       })}
@@ -32,6 +32,6 @@ export default function SectionItem({
           </div>
         )}
       </div>
-    </div>
+    </button>
   );
 }
