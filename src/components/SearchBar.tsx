@@ -1,12 +1,18 @@
-import { useContext, useState, type ReactElement } from "react";
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactElement,
+} from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { GlobalContext } from "../GlobalContext";
 import { Sections } from "../utils/types";
 
 export default function SearchBar(): ReactElement {
   const { execute } = useContext(GlobalContext);
-
   const [input, setInput] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSetCommand = (value: string) => {
     setInput(value);
@@ -22,6 +28,25 @@ export default function SearchBar(): ReactElement {
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key.includes("Arrow")) {
+        event.preventDefault();
+        return;
+      }
+      if (event.key === "Enter") {
+        handleExecute();
+        return;
+      }
+      inputRef.current?.focus();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [input]);
+
   return (
     <div className="p-4">
       <label className="flex flex-1 gap-2 items-center">
@@ -33,10 +58,8 @@ export default function SearchBar(): ReactElement {
           className="flex-1 p-2 outline-none appearance-none bg-inherit text-dark-onSurface text-lg caret-dark-primary"
           value={input}
           onChange={(e) => handleSetCommand(e.target.value)}
+          ref={inputRef}
         />
-        <button onClick={handleExecute} className="text-dark-onSurface outline-none">
-          Search
-        </button>
       </label>
     </div>
   );
