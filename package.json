@@ -15,10 +15,11 @@
     }
   },
   "scripts": {
-    "dev": "vite & electron .",
+    "dev": "vite & electron . --dev",
     "build": "tsc -b && vite build && electron-builder",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "install": "cd ./build && sudo snap install --dangerous desktop-electron-luneta_0.1.0_amd64.snap --classic"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

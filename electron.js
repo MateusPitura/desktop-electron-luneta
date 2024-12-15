@@ -5,6 +5,8 @@ import { exec } from "child_process";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
+const isDev = process.argv.includes('--dev');
+
 let mainWindow;
 
 function createWindow() {
@@ -19,8 +21,11 @@ function createWindow() {
     },
   });
 
-  mainWindow.loadURL("http://localhost:5173"); // Dev
-  // mainWindow.loadFile(path.join(__dirname, "dist/index.html")); // Prod
+  if (isDev) {
+    mainWindow.loadURL("http://localhost:5173");
+  } else {
+    mainWindow.loadFile(path.join(__dirname, "dist/index.html"));
+  }
 
   mainWindow.on("closed", () => (mainWindow = null));
 }
