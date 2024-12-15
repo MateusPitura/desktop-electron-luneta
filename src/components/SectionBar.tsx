@@ -52,7 +52,6 @@ export default function SectionBar(): ReactElement {
     <div className="w-full flex overflow-auto" id="section-scroll-container">
       <SectionItem
         label="Translate"
-        counter={3}
         active={currentSectionActive === Sections.Translate}
         onClick={() => setCurrentSectionActive(Sections.Translate)}
       >
@@ -63,7 +62,6 @@ export default function SectionBar(): ReactElement {
       <DividerVert />
       <SectionItem
         label="Dictionary"
-        counter={2}
         active={currentSectionActive === Sections.Dictionary}
         onClick={() => setCurrentSectionActive(Sections.Dictionary)}
       >

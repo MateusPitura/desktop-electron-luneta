@@ -37,12 +37,17 @@ app.on("activate", () => {
   }
 });
 
-ipcMain.on("execute", (event, message) => {
-  exec(message, (error, stdout, stderr) => {
+ipcMain.on("execute", (event, data) => {
+  const dataFormatted = JSON.parse(data);
+  exec(dataFormatted.command, (error, stdout) => {
     if (error) {
       event.reply("result", error.message);
       return;
     }
-    event.reply("result", stdout || stderr);
+    const result = {
+      ...dataFormatted,
+      output: stdout,
+    };
+    event.reply("result", JSON.stringify(result));
   });
 });
