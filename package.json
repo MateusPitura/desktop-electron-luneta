@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "main": "electron.js",
+  "description": "Luneta - Search For All",
+  "author": "MateusPitura",
   "build": {
     "appId": "desktop.electron.luneta",
     "productName": "Luneta",
@@ -12,6 +14,10 @@
     },
     "snap": {
       "confinement": "classic"
+    },
+    "linux": {
+      "icon": "assets/icon.png",
+      "category": "Utility"
     }
   },
   "scripts": {

@@ -1,11 +1,11 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, Menu, ipcMain, globalShortcut } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
 import { exec } from "child_process";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
-const isDev = process.argv.includes('--dev');
+const isDev = process.argv.includes("--dev");
 
 let mainWindow;
 
@@ -19,18 +19,35 @@ function createWindow() {
       enableRemoteModule: false,
       nodeIntegration: true,
     },
+    resizable: false,
+    frame: false,
+    icon: __dirname + '/assets/icon.png'
   });
 
   if (isDev) {
-    mainWindow.loadURL("http://localhost:5173");
+    mainWindow.loadURL("http://localhost:5173"); // O icone n ficou bom
   } else {
     mainWindow.loadFile(path.join(__dirname, "dist/index.html"));
   }
 
+  Menu.setApplicationMenu(null);
+
   mainWindow.on("closed", () => (mainWindow = null));
 }
 
-app.on("ready", createWindow);
+app.on("ready", () => {
+  createWindow();
+
+  globalShortcut.register("Escape", () => { // Parou de funcionar
+    if (mainWindow) {
+      mainWindow.hide(); // Está fechando ao inves de minimizar
+    }
+  });
+});
+
+app.on("will-quit", () => {
+  globalShortcut.unregisterAll();
+});
 
 app.on("window-all-closed", () => {
   app.quit();
