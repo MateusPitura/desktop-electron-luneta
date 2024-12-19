@@ -20,7 +20,12 @@ export default function FilterDropDownMenu({
 }: FilterDropDownMenuProperties): ReactElement {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="outline-none hover:opacity-50">
+      <DropdownMenuTrigger
+        className="outline-none hover:opacity-50"
+        onKeyDown={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className="text-dark-onPrimary flex items-center">
           <ArrowDropDown color="inherit" fontSize="small" />
         </div>

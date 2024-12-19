@@ -15,14 +15,14 @@ function createWindow() {
     height: 600,
     show: false,
     transparent: true,
+    resizable: isDev,
+    frame: isDev,
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
       contextIsolation: true,
       enableRemoteModule: false,
       nodeIntegration: true,
     },
-    resizable: false,
-    frame: false,
     icon: __dirname + "/assets/icon.png",
   });
 
@@ -32,7 +32,9 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, "dist/index.html"));
   }
 
-  Menu.setApplicationMenu(null);
+  if (!isDev) {
+    Menu.setApplicationMenu(null);
+  }
 
   mainWindow.on("closed", () => (mainWindow = null));
 

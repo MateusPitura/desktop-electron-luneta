@@ -12,6 +12,7 @@ import { Sections } from "../utils/types";
 export default function SearchBar(): ReactElement {
   const { execute } = useContext(GlobalContext);
   const [input, setInput] = useState("");
+  const [suggestText, setSuggestText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSetCommand = (value: string) => {
@@ -32,7 +33,7 @@ export default function SearchBar(): ReactElement {
     const getClipboardContent = () =>
       navigator.clipboard.readText().then((text) => {
         if (text) {
-          setInput(text);
+          setSuggestText(text);
         }
       });
 
@@ -40,25 +41,33 @@ export default function SearchBar(): ReactElement {
     return () => {
       window.removeEventListener("focus", getClipboardContent);
     };
-  }, []);
+  }, [input]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key.includes("Arrow")) {
-        return;
-      }
       if (event.key === "Enter") {
+        event.preventDefault();
+        inputRef.current?.focus();
         handleExecute();
         return;
       }
-      inputRef.current?.focus();
+      if (event.key === "Tab") {
+        event.preventDefault();
+        setInput(suggestText);
+        inputRef.current?.focus();
+        return;
+      }
+      if (event.key === "/") {
+        event.preventDefault();
+        inputRef.current?.focus();
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [input]);
+  }, [input, suggestText]);
 
   return (
     <div className="p-4">
@@ -69,6 +78,7 @@ export default function SearchBar(): ReactElement {
         <input
           type="search"
           className="flex-1 p-2 outline-none appearance-none bg-inherit text-dark-onSurface text-lg caret-dark-primary"
+          placeholder={suggestText}
           value={input}
           onChange={(e) => handleSetCommand(e.target.value)}
           ref={inputRef}
