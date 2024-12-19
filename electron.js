@@ -13,6 +13,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
       contextIsolation: true,
@@ -21,11 +22,11 @@ function createWindow() {
     },
     resizable: false,
     frame: false,
-    icon: __dirname + '/assets/icon.png'
+    icon: __dirname + "/assets/icon.png",
   });
 
   if (isDev) {
-    mainWindow.loadURL("http://localhost:5173"); // O icone n ficou bom
+    mainWindow.loadURL("http://localhost:5173");
   } else {
     mainWindow.loadFile(path.join(__dirname, "dist/index.html"));
   }
@@ -33,14 +34,18 @@ function createWindow() {
   Menu.setApplicationMenu(null);
 
   mainWindow.on("closed", () => (mainWindow = null));
+
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+  });
 }
 
 app.on("ready", () => {
   createWindow();
 
-  globalShortcut.register("Escape", () => { // Parou de funcionar
+  globalShortcut.register("Escape", () => {
     if (mainWindow) {
-      mainWindow.hide(); // Está fechando ao inves de minimizar
+      mainWindow.minimize();
     }
   });
 });
@@ -54,7 +59,7 @@ app.on("window-all-closed", () => {
 });
 
 app.on("activate", () => {
-  if (mainWindow === null) {
+  if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
 });
