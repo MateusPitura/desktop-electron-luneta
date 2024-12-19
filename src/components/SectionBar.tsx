@@ -49,7 +49,7 @@ export default function SectionBar(): ReactElement {
   }, []);
 
   return (
-    <div className="w-full flex overflow-auto" id="section-scroll-container">
+    <div className="w-full flex overflow-x-auto overflow-y-hidden" id="section-scroll-container">
       <SectionItem
         label="Translate"
         active={currentSectionActive === Sections.Translate}

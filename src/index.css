@@ -39,7 +39,7 @@ input::-webkit-search-cancel-button {
 
 ::-webkit-scrollbar {
   width: 2px;
-  height: 2px;
+  height: 1px;
 }
 
 ::-webkit-scrollbar-track {
