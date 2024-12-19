@@ -6,7 +6,7 @@ import FilterBarWrapper from "./components/FilterBarWrapper";
 
 export default function App() {
   return (
-    <div className="bg-dark-surface h-screen flex flex-col">
+    <div className="bg-dark-surface h-screen flex flex-col rounded-3xl">
       <SearchBar />
       <DividerHoriz />
       <SectionBar />
