@@ -31,7 +31,6 @@ export default function SearchBar(): ReactElement {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key.includes("Arrow")) {
-        event.preventDefault();
         return;
       }
       if (event.key === "Enter") {

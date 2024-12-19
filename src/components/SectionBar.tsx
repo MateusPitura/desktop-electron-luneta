@@ -13,11 +13,11 @@ export default function SectionBar(): ReactElement {
     if (currentSectionActive) {
       const sections = Object.keys(Sections);
       const currentIndex = sections.indexOf(currentSectionActive);
-      if (event.key === "ArrowLeft") {
+      if (event.key === "ArrowLeft" && event.metaKey && event.ctrlKey) {
         const newIndex = Math.max(currentIndex - 1, 0);
         const newSection = sections[newIndex];
         setCurrentSectionActive(newSection as Sections);
-      } else if (event.key === "ArrowRight") {
+      } else if (event.key === "ArrowRight" && event.metaKey && event.ctrlKey) {
         const newIndex = Math.min(currentIndex + 1, sections.length - 1);
         const newSection = sections[newIndex];
         setCurrentSectionActive(newSection as Sections);

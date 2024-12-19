@@ -26,9 +26,9 @@ export default function ResultTranslate({
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "ArrowUp") {
+    if (event.key === "ArrowUp" && event.metaKey && event.ctrlKey) {
       setActiveIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    } else if (event.key === "ArrowDown") {
+    } else if (event.key === "ArrowDown" && event.metaKey && event.ctrlKey) {
       setActiveIndex((prevIndex) =>
         Math.min(prevIndex + 1, (result?.info.to.length ?? 1) - 1)
       );
