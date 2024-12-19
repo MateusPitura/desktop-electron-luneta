@@ -29,6 +29,20 @@ export default function SearchBar(): ReactElement {
   };
 
   useEffect(() => {
+    const getClipboardContent = () =>
+      navigator.clipboard.readText().then((text) => {
+        if (text) {
+          setInput(text);
+        }
+      });
+
+    window.addEventListener("focus", getClipboardContent);
+    return () => {
+      window.removeEventListener("focus", getClipboardContent);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key.includes("Arrow")) {
         return;
