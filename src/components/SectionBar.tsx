@@ -55,8 +55,8 @@ export default function SectionBar(): ReactElement {
     >
       <SectionItem
         label="Translate"
-        active={currentSectionActive === Sections.Translate}
-        onClick={() => setCurrentSectionActive(Sections.Translate)}
+        active={currentSectionActive === Sections.TRANSLATE}
+        onClick={() => setCurrentSectionActive(Sections.TRANSLATE)}
       >
         <div className="text-dark-primary flex items-center">
           <Translate color="inherit" />
@@ -65,8 +65,8 @@ export default function SectionBar(): ReactElement {
       <DividerVert />
       <SectionItem
         label="Dictionary"
-        active={currentSectionActive === Sections.Dictionary}
-        onClick={() => setCurrentSectionActive(Sections.Dictionary)}
+        active={currentSectionActive === Sections.DICTIONARY}
+        onClick={() => setCurrentSectionActive(Sections.DICTIONARY)}
       >
         <div className="text-dark-primary flex items-center">
           <MenuBook color="inherit" />
@@ -75,8 +75,8 @@ export default function SectionBar(): ReactElement {
       <DividerVert />
       <SectionItem
         label="Chat"
-        active={currentSectionActive === Sections.Chat}
-        onClick={() => setCurrentSectionActive(Sections.Chat)}
+        active={currentSectionActive === Sections.CHAT}
+        onClick={() => setCurrentSectionActive(Sections.CHAT)}
       >
         <div className="text-dark-primary flex items-center">
           <AutoAwesome color="inherit" />

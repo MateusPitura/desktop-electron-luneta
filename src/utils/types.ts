@@ -1,7 +1,7 @@
 export enum Sections {
-  Translate = "Translate",
-  Dictionary = "Dictionary",
-  Chat = "Chat",
+  TRANSLATE = "Translate",
+  DICTIONARY = "Dictionary",
+  CHAT = "Chat",
 }
 
 export interface Option {

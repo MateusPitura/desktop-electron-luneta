@@ -9,7 +9,7 @@ interface GlobalProviderProperties {
 
 export function GlobalProvider({ children }: GlobalProviderProperties) {
   const [currentSectionActive, setCurrentSectionActive] = useState<Sections>(
-    Sections.Translate
+    Sections.TRANSLATE
   );
 
   const [execute, setExecute] = useState<Execute>();
