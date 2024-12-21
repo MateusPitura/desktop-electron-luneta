@@ -1,39 +1,16 @@
-import {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  type ReactElement,
-} from "react";
+import { useContext, useEffect, useState, type ReactElement } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { GlobalContext } from "../GlobalContext";
-import { Sections } from "../utils/types";
 
 export default function SearchBar(): ReactElement {
-  const { execute } = useContext(GlobalContext);
-  const [input, setInput] = useState("");
+  const { register, setValue, setFocus } = useContext(GlobalContext);
   const [suggestText, setSuggestText] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleSetCommand = (value: string) => {
-    setInput(value);
-  };
-
-  const handleExecute = () => {
-    const executeFormatted = { ...execute };
-    switch (executeFormatted.section) {
-      case Sections.Translate:
-        executeFormatted.command = `${executeFormatted.command} "${input}"`;
-        window.electron.send("execute", JSON.stringify(executeFormatted));
-        break;
-    }
-  };
 
   useEffect(() => {
     const getClipboardContent = () =>
       navigator.clipboard.readText().then((text) => {
         if (text) {
-          setSuggestText(text);
+          setSuggestText(text.trim());
         }
       });
 
@@ -41,25 +18,17 @@ export default function SearchBar(): ReactElement {
     return () => {
       window.removeEventListener("focus", getClipboardContent);
     };
-  }, [input]);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        inputRef.current?.focus();
-        handleExecute();
-        return;
-      }
       if (event.key === "Tab") {
         event.preventDefault();
-        setInput(suggestText);
-        inputRef.current?.focus();
-        return;
-      }
-      if (event.key === "/") {
+        setFocus?.("search");
+        setValue?.("search", suggestText);
+      } else if (event.key === "/") {
         event.preventDefault();
-        inputRef.current?.focus();
+        setFocus?.("search");
       }
     };
 
@@ -67,7 +36,7 @@ export default function SearchBar(): ReactElement {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [input, suggestText]);
+  }, [suggestText]);
 
   return (
     <div className="p-4">
@@ -79,9 +48,7 @@ export default function SearchBar(): ReactElement {
           type="search"
           className="flex-1 p-2 outline-none appearance-none bg-inherit text-dark-onSurface text-lg caret-dark-primary"
           placeholder={suggestText}
-          value={input}
-          onChange={(e) => handleSetCommand(e.target.value)}
-          ref={inputRef}
+          {...register?.("search")}
         />
       </label>
     </div>
