@@ -14,9 +14,21 @@ export interface Translate {
   to: Option[];
 }
 
+export interface Dictionary {
+  language: Option[];
+}
+
 export interface Execute {
   command: string;
   output?: string;
   section: Sections;
-  info: Translate;
+  info: Translate | Dictionary;
+}
+
+export interface Inputs {
+  search: string;
+  section: Sections;
+  translateFilterFrom: string;
+  translateFilterTo: string | string[];
+  dictionaryFilter: string;
 }

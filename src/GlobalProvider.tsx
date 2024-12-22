@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import { Execute, Inputs, Sections } from "./utils/types";
+import { Inputs, Sections } from "./utils/types";
 import { GlobalContext } from "./GlobalContext";
 import { useForm } from "react-hook-form";
 
@@ -12,8 +12,6 @@ export function GlobalProvider({ children }: GlobalProviderProperties) {
     Sections.TRANSLATE
   );
 
-  const [execute, setExecute] = useState<Execute>();
-
   const { handleSubmit, register, setValue, setFocus } = useForm<Inputs>();
 
   return (
@@ -21,12 +19,10 @@ export function GlobalProvider({ children }: GlobalProviderProperties) {
       value={{
         currentSectionActive,
         setCurrentSectionActive,
-        execute,
-        setExecute,
         handleSubmit,
         register,
         setValue,
-        setFocus
+        setFocus,
       }}
     >
       {children}

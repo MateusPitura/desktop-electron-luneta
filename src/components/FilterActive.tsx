@@ -12,13 +12,19 @@ interface FilterActiveProperties {
 export default function FilterActive({
   option,
   onClick,
-  name
+  name,
 }: FilterActiveProperties): ReactElement {
   const { register } = useContext(GlobalContext);
 
   return (
     <label className="bg-dark-secondary rounded-md px-2 flex gap-2 items-center">
-      <input {...register?.(name)} type="checkbox" checked hidden value={option.value}/>
+      <input
+        {...register?.(name)}
+        type="checkbox"
+        checked
+        hidden
+        value={option.value}
+      />
       <span className="text-dark-onSecondary text-sm">{option.label}</span>
       <button
         className="text-dark-onSecondary flex items-center hover:opacity-50"
