@@ -1,9 +1,8 @@
 import { useContext, type ReactElement } from "react";
-import { GlobalContext } from "../GlobalContext";
 import { Execute, Sections } from "../utils/types";
 import ResultTranslate from "./ResultTranslate";
-// import ResultDictionary from "./ResultDictionary";
-// import ResultChat from "./ResultChat";
+import ResultDictionary from "./ResultDictionary";
+import { GlobalContext } from "../GlobalContext";
 
 interface ResultWrapperProperties {
   result?: Execute;
@@ -15,12 +14,10 @@ export default function ResultWrapper({
   const { currentSectionActive } = useContext(GlobalContext);
 
   switch (currentSectionActive) {
-    case Sections.Translate:
+    case Sections.TRANSLATE:
       return <ResultTranslate result={result} />;
-    // case Sections.Dictionary:
-    //   return <ResultDictionary />;
-    // case Sections.Chat:
-    //   return <ResultChat />;
+    case Sections.DICTIONARY:
+      return <ResultDictionary result={result}/>;
     default:
       return <ResultTranslate result={result} />;
   }

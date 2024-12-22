@@ -11,7 +11,7 @@ export default function SectionBar(): ReactElement {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (currentSectionActive) {
-      const sections = Object.keys(Sections);
+      const sections = Object.values(Sections);
       const currentIndex = sections.indexOf(currentSectionActive);
       if (event.key === "ArrowLeft" && event.metaKey && event.ctrlKey) {
         const newIndex = Math.max(currentIndex - 1, 0);
