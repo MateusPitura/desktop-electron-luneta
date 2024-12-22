@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import FilterDropDownMenu from "./FilterDropDownMenu";
 import { Option } from "../utils/types";
 

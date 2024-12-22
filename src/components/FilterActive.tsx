@@ -1,18 +1,24 @@
 import { Clear } from "@mui/icons-material";
-import type { ReactElement } from "react";
-import { Option } from "../utils/types";
+import { useContext, type ReactElement } from "react";
+import { Inputs, Option } from "../utils/types";
+import { GlobalContext } from "../GlobalContext";
 
 interface FilterActiveProperties {
   option: Option;
   onClick: (option?: Option) => void;
+  name: keyof Inputs;
 }
 
 export default function FilterActive({
   option,
   onClick,
+  name
 }: FilterActiveProperties): ReactElement {
+  const { register } = useContext(GlobalContext);
+
   return (
-    <div className="bg-dark-secondary rounded-md px-2 flex gap-2 items-center">
+    <label className="bg-dark-secondary rounded-md px-2 flex gap-2 items-center">
+      <input {...register?.(name)} type="checkbox" checked hidden value={option.value}/>
       <span className="text-dark-onSecondary text-sm">{option.label}</span>
       <button
         className="text-dark-onSecondary flex items-center hover:opacity-50"
@@ -20,6 +26,6 @@ export default function FilterActive({
       >
         <Clear color="inherit" fontSize="small" />
       </button>
-    </div>
+    </label>
   );
 }
