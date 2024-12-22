@@ -1,10 +1,15 @@
-import { Fragment, useEffect, useState, type ReactElement } from "react";
+import {
+  Fragment,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactElement,
+} from "react";
 import ResultOptionsContainer from "./ResultOptionsContainer";
 import ResultOption from "./ResultOption";
 import DividerHoriz from "./DividerHoriz";
 import ResultOutputContainer from "./ResultOutputContainer";
-import { Execute } from "../utils/types";
-import { ContentCopy } from "@mui/icons-material";
+import { Execute, Translate } from "../utils/types";
 
 interface ResultTranslateProperties {
   result?: Execute;
@@ -14,6 +19,11 @@ export default function ResultTranslate({
   result,
 }: ResultTranslateProperties): ReactElement {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  const infoMemoized = useMemo(
+    () => result?.info as Translate | undefined,
+    [result]
+  );
 
   const handleActiveIndex = (index: number) => {
     setActiveIndex(index);
@@ -30,7 +40,7 @@ export default function ResultTranslate({
       setActiveIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     } else if (event.key === "ArrowDown" && event.metaKey && event.ctrlKey) {
       setActiveIndex((prevIndex) =>
-        Math.min(prevIndex + 1, (result?.info.to.length ?? 1) - 1)
+        Math.min(prevIndex + 1, (infoMemoized?.to.length ?? 1) - 1)
       );
     }
   };
@@ -45,10 +55,10 @@ export default function ResultTranslate({
   return (
     <>
       <ResultOptionsContainer>
-        {result?.info.to.map((to, index) => (
+        {infoMemoized?.to?.map((to, index) => (
           <Fragment key={to.value}>
             <ResultOption
-              label={result.info.from[0]?.label ?? "Auto"}
+              label={infoMemoized?.from[0]?.label ?? "Auto"}
               supportText={to.label}
               onClick={() => handleActiveIndex(index)}
               active={activeIndex === index}
@@ -57,15 +67,7 @@ export default function ResultTranslate({
           </Fragment>
         ))}
       </ResultOptionsContainer>
-      <ResultOutputContainer>
-        <div className="flex items-center justify-end">
-          <button
-            className="hover:opacity-50 cursor-pointer text-dark-primary flex items-center"
-            onClick={handleOnClickCopy}
-          >
-            <ContentCopy fontSize="small" color="inherit" />
-          </button>
-        </div>
+      <ResultOutputContainer onClickCopy={handleOnClickCopy}>
         {result?.output?.split("\n")[activeIndex]}
       </ResultOutputContainer>
     </>
