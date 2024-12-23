@@ -5,6 +5,7 @@ import {
   UseFormRegister,
   UseFormSetFocus,
   UseFormSetValue,
+  UseFormUnregister,
 } from "react-hook-form";
 
 interface GlobalContextProperties {
@@ -14,6 +15,7 @@ interface GlobalContextProperties {
   register?: UseFormRegister<Inputs>;
   setValue?: UseFormSetValue<Inputs>;
   setFocus?: UseFormSetFocus<Inputs>;
+  unregister?: UseFormUnregister<Inputs>
 }
 
 export const GlobalContext = createContext<GlobalContextProperties>({
@@ -23,4 +25,5 @@ export const GlobalContext = createContext<GlobalContextProperties>({
   register: undefined,
   setValue: undefined,
   setFocus: undefined,
+  unregister: undefined,
 });

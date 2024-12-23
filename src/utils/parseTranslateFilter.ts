@@ -18,9 +18,9 @@ export default function parseTranslateFilter({
   const fromFormatted = languages.filter((language) => language.value === from);
   let toFormatted;
   if (Array.isArray(to)) {
-    toFormatted = languages.filter((language) =>
-      to.some((item) => item === language.value)
-    );
+    toFormatted = to.map((item) =>
+      languages.find((language) => item === language.value)
+    ) as Option[];
   } else {
     toFormatted = languages.filter((language) => language.value === to);
   }

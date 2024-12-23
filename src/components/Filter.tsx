@@ -1,7 +1,8 @@
-import { useState, type ReactElement } from "react";
+import { useContext, useState, type ReactElement } from "react";
 import { Inputs, Option } from "../utils/types";
 import FilterSelect from "./FilterSelect";
 import FilterActive from "./FilterActive";
+import { GlobalContext } from "../GlobalContext";
 
 interface FilterProperties {
   multiple?: boolean;
@@ -16,6 +17,8 @@ export default function Filter({
   label,
   inputName,
 }: FilterProperties): ReactElement {
+  const { unregister } = useContext(GlobalContext);
+
   const [currentFilter, setCurrentFilter] = useState<Option[]>([]);
 
   const handleAddCurrentFilter = (option: Option) => {
@@ -37,6 +40,7 @@ export default function Filter({
     setCurrentFilter((previous) =>
       previous.filter((filter) => filter.value !== option?.value)
     );
+    unregister?.(inputName)
   };
 
   return (

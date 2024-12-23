@@ -12,7 +12,8 @@ export function GlobalProvider({ children }: GlobalProviderProperties) {
     Sections.TRANSLATE
   );
 
-  const { handleSubmit, register, setValue, setFocus } = useForm<Inputs>();
+  const { handleSubmit, register, setValue, setFocus, unregister } =
+    useForm<Inputs>();
 
   return (
     <GlobalContext.Provider
@@ -23,6 +24,7 @@ export function GlobalProvider({ children }: GlobalProviderProperties) {
         register,
         setValue,
         setFocus,
+        unregister,
       }}
     >
       {children}
