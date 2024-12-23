@@ -33,6 +33,7 @@ export default function Filter({
   };
 
   const handleRemoveCurrentFilter = (option?: Option) => {
+    unregister?.(inputName)
     if (!multiple) {
       setCurrentFilter([]);
       return;
@@ -40,7 +41,6 @@ export default function Filter({
     setCurrentFilter((previous) =>
       previous.filter((filter) => filter.value !== option?.value)
     );
-    unregister?.(inputName)
   };
 
   return (
