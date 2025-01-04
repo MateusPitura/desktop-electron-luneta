@@ -25,11 +25,11 @@ such as translations, dictionaries, and more.
 
 ## Features 
 
-:nome_do_emoji2: **Multi-Source Search:** search across translations, dictionaries, and other sources
+🌐 **Multi-Source Search:** search across translations, dictionaries, and other sources
 
-:nome_do_emoji3: **Customizable:** add or remove filters to suit your needs
+🎨 **Customizable:** add or remove filters to suit your needs
 
-:nome_do_emoji4: **Global Hotkey:** trigger the search bar from anywhere with a configurable keyboard shortcut
+🖱️ **Global Hotkey:** trigger the search bar from anywhere with a configurable keyboard shortcut
 
 ## How to Run
 
