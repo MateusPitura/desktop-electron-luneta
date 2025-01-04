@@ -16,7 +16,7 @@
 
 Luneta is a Linux-based desktop application built with Electron. 
 It provides an all-in-one search solution where users can search for a phrase or term and get results from multiple sources, 
-such as translations, dictionaries, and more.
+such as translations, dictionaries, and more
 
 - [Features](#features)
 - [How to Run](#how-to-run)
@@ -25,7 +25,7 @@ such as translations, dictionaries, and more.
 
 ## Features 
 
-🌐 **Multi-Source Search:** search across translations, dictionaries, and other sources
+🔍 **Multi-Source Search:** search across translations, dictionaries, and other sources
 
 🎨 **Customizable:** add or remove filters to suit your needs
 
