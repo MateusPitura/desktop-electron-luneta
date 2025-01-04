@@ -3,7 +3,7 @@
 </h1> 
 
 <p> 
-  <img src="https://img.shields.io/badge/Release-Dez%202024-green">  
+  <img src="https://img.shields.io/badge/Release-Dec%202024-green">  
   <img src="https://img.shields.io/badge/Version-0.1.0-blue">  
   <img src="https://img.shields.io/badge/Status-Open-brightgreen">  
   <img src="https://img.shields.io/badge/OS-Linux-red">  
