@@ -1,0 +1,24 @@
+LISTA DE SECTIONS:
+- Tradução: usado translate-shell. A detecção automática de idioma é possível, mas usando o brief mode não
+- Dicionário: usado [freeDictionary](https://github.com/meetDeveloper/freeDictionaryAPI?tab=readme-ov-file), é apenas em inglês, mas por ser em formato JSON é mais fácil
+- IA: ollama. Poderia também tirar um print da tela e usar como prompt
+- Histórico de clipboard: xclip ou pbpaste
+- Favoritos do Chrome: histórico de pesquisa também seria legal
+- Pesquisas em arquivos: usar o comando find, abrir e editar arquivos de texto
+- Calculadora: também conversor de medidas, conversor de timestamp
+- Shell: executar comandos no terminal
+- Financeiro: ações, cotação de moedas
+- Outros: pesquisa por programas instalados, emails, SMS, contatos, opções do sistema, calendário, processos do sistema, portas de rede usadas
+
+LISTA DE PENDÊNCIAS:
+- Estilizar e formatar o dicionário
+- Está "roubando" o ESC de forma incómoda, acho que deveria remover o shortcut ao peder o focus e devolver ao focar
+- Remover o component Result.tsx, não é mais usado. Passar para o App.tsx direto o ResultWrapper.tsx
+- Generalizar o ResultTranslate.tsx e ResultDictionary.tsx, principalmente a parte do activeIndex
+
+BACKLOG DE FEATURES:
+- Colar o output onde estiver o cursor de forma fácil
+- Executar várias chamadas ao terminal paralelamente
+- Abrir com um shortcut
+- Adicionar um botão de ajuda no canto de como usar, lista de shortcuts etc.
+- Adicionar uma mensagem de loading e nada encontrado
