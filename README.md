@@ -10,8 +10,6 @@
   <img src="https://img.shields.io/github/stars/MateusPitura/desktop-electron-luneta?style=social"> 
 </p> 
 
-> :construction: This app is under development :construction: 
-
 ## Description
 
 Luneta is a Linux-based desktop application built with Electron. 
