@@ -47,9 +47,9 @@ such as translations, dictionaries, and more
 
 :heavy_check_mark: React
  
-:heavy_check_mark: [Translate Shell](https://github.com/soimort/translate-shell)
+:heavy_check_mark: Translate Shell
 
-:heavy_check_mark: [Free Dictionary API](https://dictionaryapi.dev/)
+:heavy_check_mark: Free Dictionary API
 
 ## Authors 
 
